@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            height: 100vh;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            background: black;
+        }
+        .date-time{
+            color:white;
+            background: #10101E;
+            width:800px;
+            height:300px;
+            border:5px solid #2E94E3;
+            text-align:center;
+            transition: 0.5s;
+            border-radius:5px;
+            transition-property: background,box-shadow;
+            -webkit-box-reflect: below 1px linear-gradient(transparent,rgba(255,255,255,0.1));
+        }
+        .date{
+            font-size: 40px;
+            letter-spacing: 5px;
+            margin-top:30px;
+            margin-bottom:50px;
+        }
+        .time{
+            font-size:90px;
+            letter-spacing:5px;
+        }
+        #period{
+            font-size:60px;
+            background-color:#2E94E3;
+        }
+        .date-time:hover{
+            cursor:pointer;
+            background: #2E94E3 ;
+            box-shadow:0 0 30px #2E94E3;
+           
+        }
+    </style>
+</head>
+<body>
+    <div class="date-time">
+        <div class="date">
+            <span id="day">day</span>
+            <span id="month">month</span>
+            <span id="daynum">00</span>
+            <span id="year">year</span>
+        </div>
+        <div class="time">
+            <span id="hrs">00</span>
+            <span>:</span>
+            <span id="min">00</span>
+            <span>:</span>
+            <span id="sec">00</span>
+            <span id="period">PM</span>
+        </div>
+    </div>
+    <script>
+      let hrs=document.getElementById('hrs');
+        let min=document.getElementById('min');
+        let sec=document.getElementById('sec');
+        let period=document.getElementById("period");
+
+    setInterval(()=>{
+       let time=new Date();
+        hrs.innerHTML=(time.getHours()>12?((time.getHours()-12)<10?"0":"")+(time.getHours()-12):time.getHours());
+        min.innerHTML=(time.getMinutes()<10?"0":"")+time.getMinutes();
+        sec.innerHTML=(time.getSeconds()<10?"0":"")+time.getSeconds();
+    },1000)  
+    setInterval(()=>{
+        let time=new Date();
+        period.innerHTML=(time.getHours()>0 && time.getHours()<=11)?"AM":"PM";
+    },43200)
+    
+
+        
+    </script>
+</body>
+</html>
